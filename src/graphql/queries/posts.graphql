@@ -1,0 +1,7 @@
+query getPosts($options: PageQueryOptions) {
+  posts(options: $options) {
+    data {
+      ...PostSnippet
+    }
+  }
+}
