@@ -6,20 +6,7 @@ import './ReactotronConfig';
 
 const client = new ApolloClient({
   uri: 'https://graphqlzero.almansi.me/api',
-  cache: new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          Post: {
-            keyArgs: false,
-            merge(existing = [], incoming) {
-              return [...existing, ...incoming];
-            },
-          },
-        },
-      },
-    },
-  }),
+  cache: new InMemoryCache(),
 });
 
 const App = () => {

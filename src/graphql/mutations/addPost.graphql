@@ -1,0 +1,5 @@
+mutation addPost($input: CreatePostInput!) {
+  createPost(input: $input) {
+    ...PostSnippet
+  }
+}
