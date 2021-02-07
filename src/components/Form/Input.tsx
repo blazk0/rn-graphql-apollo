@@ -8,10 +8,16 @@ type Props = TextInputProps & {
   control: Control;
   name: string;
   error?: FieldError;
-  value?: string;
+  defaultVal?: string;
 };
 
-const Input = ({ control, name, placeholder, value, ...props }: Props) => {
+const Input = ({
+  control,
+  name,
+  placeholder,
+  defaultVal = '',
+  ...props
+}: Props) => {
   return (
     <View style={styles.inputContainer}>
       <Controller
@@ -26,7 +32,7 @@ const Input = ({ control, name, placeholder, value, ...props }: Props) => {
           />
         )}
         name={name}
-        defaultValue={value}
+        defaultValue={defaultVal}
       />
     </View>
   );

@@ -1,9 +1,13 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,7 +18,6 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
-
 
 export type Query = {
   __typename?: 'Query';
@@ -33,61 +36,49 @@ export type Query = {
   user?: Maybe<User>;
 };
 
-
 export type QueryAlbumsArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryAlbumArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryCommentsArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryCommentArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryPhotosArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryPhotoArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryPostsArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryPostArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryTodosArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryTodoArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryUsersArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type QueryUserArgs = {
   id: Scalars['ID'];
@@ -119,7 +110,7 @@ export type SortOptions = {
 
 export enum SortOrderEnum {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type OperatorOptions = {
@@ -132,7 +123,7 @@ export enum OperatorKindEnum {
   Gte = 'GTE',
   Lte = 'LTE',
   Ne = 'NE',
-  Like = 'LIKE'
+  Like = 'LIKE',
 }
 
 export type SearchOptions = {
@@ -154,7 +145,6 @@ export type Album = {
   photos?: Maybe<PhotosPage>;
 };
 
-
 export type AlbumPhotosArgs = {
   options?: Maybe<PageQueryOptions>;
 };
@@ -174,16 +164,13 @@ export type User = {
   todos?: Maybe<TodosPage>;
 };
 
-
 export type UserPostsArgs = {
   options?: Maybe<PageQueryOptions>;
 };
 
-
 export type UserAlbumsArgs = {
   options?: Maybe<PageQueryOptions>;
 };
-
 
 export type UserTodosArgs = {
   options?: Maybe<PageQueryOptions>;
@@ -226,7 +213,6 @@ export type Post = {
   user?: Maybe<User>;
   comments?: Maybe<CommentsPage>;
 };
-
 
 export type PostCommentsArgs = {
   options?: Maybe<PageQueryOptions>;
@@ -328,97 +314,79 @@ export type Mutation = {
   deleteUser?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateAlbumArgs = {
   input: CreateAlbumInput;
 };
-
 
 export type MutationUpdateAlbumArgs = {
   id: Scalars['ID'];
   input: UpdateAlbumInput;
 };
 
-
 export type MutationDeleteAlbumArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationCreateCommentArgs = {
   input: CreateCommentInput;
 };
-
 
 export type MutationUpdateCommentArgs = {
   id: Scalars['ID'];
   input: UpdateCommentInput;
 };
 
-
 export type MutationDeleteCommentArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationCreatePhotoArgs = {
   input: CreatePhotoInput;
 };
-
 
 export type MutationUpdatePhotoArgs = {
   id: Scalars['ID'];
   input: UpdatePhotoInput;
 };
 
-
 export type MutationDeletePhotoArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationCreatePostArgs = {
   input: CreatePostInput;
 };
-
 
 export type MutationUpdatePostArgs = {
   id: Scalars['ID'];
   input: UpdatePostInput;
 };
 
-
 export type MutationDeletePostArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationCreateTodoArgs = {
   input: CreateTodoInput;
 };
-
 
 export type MutationUpdateTodoArgs = {
   id: Scalars['ID'];
   input: UpdateTodoInput;
 };
 
-
 export type MutationDeleteTodoArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
 };
 
-
 export type MutationUpdateUserArgs = {
   id: Scalars['ID'];
   input: UpdateUserInput;
 };
-
 
 export type MutationDeleteUserArgs = {
   id: Scalars['ID'];
@@ -519,86 +487,79 @@ export type UpdateUserInput = {
 
 export enum CacheControlScope {
   Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Private = 'PRIVATE',
 }
 
-
-export type PostSnippetFragment = (
-  { __typename?: 'Post' }
-  & Pick<Post, 'id' | 'title' | 'body'>
-);
+export type PostSnippetFragment = { __typename?: 'Post' } & Pick<
+  Post,
+  'id' | 'title' | 'body'
+>;
 
 export type AddPostMutationVariables = Exact<{
   input: CreatePostInput;
 }>;
 
+export type AddPostMutation = { __typename?: 'Mutation' } & {
+  createPost?: Maybe<{ __typename?: 'Post' } & PostSnippetFragment>;
+};
 
-export type AddPostMutation = (
-  { __typename?: 'Mutation' }
-  & { createPost?: Maybe<(
-    { __typename?: 'Post' }
-    & PostSnippetFragment
-  )> }
-);
+export type DeletePostMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type DeletePostMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'deletePost'
+>;
 
 export type UpdatePostMutationVariables = Exact<{
   id: Scalars['ID'];
   input: UpdatePostInput;
 }>;
 
-
-export type UpdatePostMutation = (
-  { __typename?: 'Mutation' }
-  & { updatePost?: Maybe<(
-    { __typename?: 'Post' }
-    & PostSnippetFragment
-  )> }
-);
+export type UpdatePostMutation = { __typename?: 'Mutation' } & {
+  updatePost?: Maybe<{ __typename?: 'Post' } & PostSnippetFragment>;
+};
 
 export type GetPostQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-
-export type GetPostQuery = (
-  { __typename?: 'Query' }
-  & { post?: Maybe<(
-    { __typename?: 'Post' }
-    & PostSnippetFragment
-  )> }
-);
+export type GetPostQuery = { __typename?: 'Query' } & {
+  post?: Maybe<{ __typename?: 'Post' } & PostSnippetFragment>;
+};
 
 export type GetPostsQueryVariables = Exact<{
   options?: Maybe<PageQueryOptions>;
 }>;
 
-
-export type GetPostsQuery = (
-  { __typename?: 'Query' }
-  & { posts?: Maybe<(
-    { __typename?: 'PostsPage' }
-    & { data?: Maybe<Array<Maybe<(
-      { __typename?: 'Post' }
-      & PostSnippetFragment
-    )>>> }
-  )> }
-);
+export type GetPostsQuery = { __typename?: 'Query' } & {
+  posts?: Maybe<
+    { __typename?: 'PostsPage' } & {
+      data?: Maybe<Array<Maybe<{ __typename?: 'Post' } & PostSnippetFragment>>>;
+    }
+  >;
+};
 
 export const PostSnippetFragmentDoc = gql`
-    fragment PostSnippet on Post {
-  id
-  title
-  body
-}
-    `;
-export const AddPostDocument = gql`
-    mutation addPost($input: CreatePostInput!) {
-  createPost(input: $input) {
-    ...PostSnippet
+  fragment PostSnippet on Post {
+    id
+    title
+    body
   }
-}
-    ${PostSnippetFragmentDoc}`;
-export type AddPostMutationFn = Apollo.MutationFunction<AddPostMutation, AddPostMutationVariables>;
+`;
+export const AddPostDocument = gql`
+  mutation addPost($input: CreatePostInput!) {
+    createPost(input: $input) {
+      ...PostSnippet
+    }
+  }
+  ${PostSnippetFragmentDoc}
+`;
+export type AddPostMutationFn = Apollo.MutationFunction<
+  AddPostMutation,
+  AddPostMutationVariables
+>;
 
 /**
  * __useAddPostMutation__
@@ -617,20 +578,81 @@ export type AddPostMutationFn = Apollo.MutationFunction<AddPostMutation, AddPost
  *   },
  * });
  */
-export function useAddPostMutation(baseOptions?: Apollo.MutationHookOptions<AddPostMutation, AddPostMutationVariables>) {
-        return Apollo.useMutation<AddPostMutation, AddPostMutationVariables>(AddPostDocument, baseOptions);
-      }
+export function useAddPostMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddPostMutation,
+    AddPostMutationVariables
+  >,
+) {
+  return Apollo.useMutation<AddPostMutation, AddPostMutationVariables>(
+    AddPostDocument,
+    baseOptions,
+  );
+}
 export type AddPostMutationHookResult = ReturnType<typeof useAddPostMutation>;
 export type AddPostMutationResult = Apollo.MutationResult<AddPostMutation>;
-export type AddPostMutationOptions = Apollo.BaseMutationOptions<AddPostMutation, AddPostMutationVariables>;
-export const UpdatePostDocument = gql`
-    mutation updatePost($id: ID!, $input: UpdatePostInput!) {
-  updatePost(id: $id, input: $input) {
-    ...PostSnippet
+export type AddPostMutationOptions = Apollo.BaseMutationOptions<
+  AddPostMutation,
+  AddPostMutationVariables
+>;
+export const DeletePostDocument = gql`
+  mutation deletePost($id: ID!) {
+    deletePost(id: $id)
   }
+`;
+export type DeletePostMutationFn = Apollo.MutationFunction<
+  DeletePostMutation,
+  DeletePostMutationVariables
+>;
+
+/**
+ * __useDeletePostMutation__
+ *
+ * To run a mutation, you first call `useDeletePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePostMutation, { data, loading, error }] = useDeletePostMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePostMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeletePostMutation,
+    DeletePostMutationVariables
+  >,
+) {
+  return Apollo.useMutation<DeletePostMutation, DeletePostMutationVariables>(
+    DeletePostDocument,
+    baseOptions,
+  );
 }
-    ${PostSnippetFragmentDoc}`;
-export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
+export type DeletePostMutationHookResult = ReturnType<
+  typeof useDeletePostMutation
+>;
+export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
+export type DeletePostMutationOptions = Apollo.BaseMutationOptions<
+  DeletePostMutation,
+  DeletePostMutationVariables
+>;
+export const UpdatePostDocument = gql`
+  mutation updatePost($id: ID!, $input: UpdatePostInput!) {
+    updatePost(id: $id, input: $input) {
+      ...PostSnippet
+    }
+  }
+  ${PostSnippetFragmentDoc}
+`;
+export type UpdatePostMutationFn = Apollo.MutationFunction<
+  UpdatePostMutation,
+  UpdatePostMutationVariables
+>;
 
 /**
  * __useUpdatePostMutation__
@@ -650,19 +672,33 @@ export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, U
  *   },
  * });
  */
-export function useUpdatePostMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
-        return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, baseOptions);
-      }
-export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
-export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
-export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
-export const GetPostDocument = gql`
-    query getPost($id: ID!) {
-  post(id: $id) {
-    ...PostSnippet
-  }
+export function useUpdatePostMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdatePostMutation,
+    UpdatePostMutationVariables
+  >,
+) {
+  return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(
+    UpdatePostDocument,
+    baseOptions,
+  );
 }
-    ${PostSnippetFragmentDoc}`;
+export type UpdatePostMutationHookResult = ReturnType<
+  typeof useUpdatePostMutation
+>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<
+  UpdatePostMutation,
+  UpdatePostMutationVariables
+>;
+export const GetPostDocument = gql`
+  query getPost($id: ID!) {
+    post(id: $id) {
+      ...PostSnippet
+    }
+  }
+  ${PostSnippetFragmentDoc}
+`;
 
 /**
  * __useGetPostQuery__
@@ -680,24 +716,41 @@ export const GetPostDocument = gql`
  *   },
  * });
  */
-export function useGetPostQuery(baseOptions: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
-        return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
-      }
-export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
-          return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
-        }
+export function useGetPostQuery(
+  baseOptions: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>,
+) {
+  return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(
+    GetPostDocument,
+    baseOptions,
+  );
+}
+export function useGetPostLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPostQuery,
+    GetPostQueryVariables
+  >,
+) {
+  return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(
+    GetPostDocument,
+    baseOptions,
+  );
+}
 export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
 export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
-export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
+export type GetPostQueryResult = Apollo.QueryResult<
+  GetPostQuery,
+  GetPostQueryVariables
+>;
 export const GetPostsDocument = gql`
-    query getPosts($options: PageQueryOptions) {
-  posts(options: $options) {
-    data {
-      ...PostSnippet
+  query getPosts($options: PageQueryOptions) {
+    posts(options: $options) {
+      data {
+        ...PostSnippet
+      }
     }
   }
-}
-    ${PostSnippetFragmentDoc}`;
+  ${PostSnippetFragmentDoc}
+`;
 
 /**
  * __useGetPostsQuery__
@@ -715,12 +768,30 @@ export const GetPostsDocument = gql`
  *   },
  * });
  */
-export function useGetPostsQuery(baseOptions?: Apollo.QueryHookOptions<GetPostsQuery, GetPostsQueryVariables>) {
-        return Apollo.useQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, baseOptions);
-      }
-export function useGetPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostsQuery, GetPostsQueryVariables>) {
-          return Apollo.useLazyQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, baseOptions);
-        }
+export function useGetPostsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetPostsQuery, GetPostsQueryVariables>,
+) {
+  return Apollo.useQuery<GetPostsQuery, GetPostsQueryVariables>(
+    GetPostsDocument,
+    baseOptions,
+  );
+}
+export function useGetPostsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPostsQuery,
+    GetPostsQueryVariables
+  >,
+) {
+  return Apollo.useLazyQuery<GetPostsQuery, GetPostsQueryVariables>(
+    GetPostsDocument,
+    baseOptions,
+  );
+}
 export type GetPostsQueryHookResult = ReturnType<typeof useGetPostsQuery>;
-export type GetPostsLazyQueryHookResult = ReturnType<typeof useGetPostsLazyQuery>;
-export type GetPostsQueryResult = Apollo.QueryResult<GetPostsQuery, GetPostsQueryVariables>;
+export type GetPostsLazyQueryHookResult = ReturnType<
+  typeof useGetPostsLazyQuery
+>;
+export type GetPostsQueryResult = Apollo.QueryResult<
+  GetPostsQuery,
+  GetPostsQueryVariables
+>;

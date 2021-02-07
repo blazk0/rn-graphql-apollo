@@ -12,6 +12,7 @@ module.exports = {
           '@generated': './src/generated',
           '@navigation': './src/navigation',
           '@utils': './src/utils',
+          '@hooks': './src/hooks',
         },
       },
     ],

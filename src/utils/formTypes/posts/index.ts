@@ -1,9 +1,4 @@
-export type addPostData = {
-  title: string;
-  body: string;
-};
-
-export type updatePostData = {
+export type postData = {
   title: string;
   body: string;
 };

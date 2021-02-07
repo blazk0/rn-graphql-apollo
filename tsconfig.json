@@ -20,7 +20,8 @@
       "@components/*": ["./components/*"],
       "@generated/*": ["./generated/*"],
       "@navigation/*": ["./navigation/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   }
 }

@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { paramTypes } from '@navigation/paramTypes';
-import { Post } from '@generated/graphql';
+import { Post, useDeletePostMutation } from '@generated/graphql';
 import { moderateScale, verticalScale } from '@utils/scaling';
 
 type Props = {
@@ -14,10 +14,20 @@ type Props = {
 
 const PostItem = ({ post }: Props) => {
   const navigation = useNavigation<StackNavigationProp<paramTypes>>();
+  const [mutate] = useDeletePostMutation();
+
+  const deletePost = () => {
+    mutate({
+      variables: {
+        id: post?.id as string,
+      },
+    });
+  };
 
   return (
     <TouchableOpacity
       style={styles.container}
+      onLongPress={deletePost}
       onPress={() => navigation.navigate('EditPost', { postId: post?.id })}>
       <Text style={styles.title}>{post?.title}</Text>
       <Text>{post?.body}</Text>
