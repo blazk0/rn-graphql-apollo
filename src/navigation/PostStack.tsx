@@ -1,7 +1,7 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
 
 import Posts from '@pages/posts/Posts';
 import Post from '@pages/posts/EditPost';

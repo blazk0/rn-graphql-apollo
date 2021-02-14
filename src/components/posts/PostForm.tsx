@@ -30,7 +30,7 @@ const PostForm = ({ post, title, onSubmit }: Props) => {
         placeholder="Title"
         control={control}
         error={errors.title}
-        defaultVal={post?.title as string}
+        defaultVal={post?.title}
         multiline
       />
 
@@ -39,7 +39,7 @@ const PostForm = ({ post, title, onSubmit }: Props) => {
         placeholder="Body"
         control={control}
         error={errors.body}
-        defaultVal={post?.body as string}
+        defaultVal={post?.body}
         multiline
       />
 

@@ -8,7 +8,7 @@ type Props = TextInputProps & {
   control: Control;
   name: string;
   error?: FieldError;
-  defaultVal?: string;
+  defaultVal?: string | null;
 };
 
 const Input = ({

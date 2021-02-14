@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, FlatList, StyleSheet } from 'react-native';
 
 import { useGetPostsQuery } from '@generated/graphql';
 import { Container, Loading } from '@components/common';
 import PostItem from '@components/posts/PostItem';
 import { moderateScale, verticalScale } from '@utils/scaling';
+import { createPostPaginationObj } from '@utils/apollo';
 
 const Posts = () => {
-  const { loading, data } = useGetPostsQuery({
-    variables: { options: { paginate: { page: 1 } } },
-  });
+  const [page, setPage] = useState(1);
+  const { loading, data, fetchMore } = useGetPostsQuery(
+    createPostPaginationObj(page),
+  );
+
+  const getMorePosts = () => {
+    fetchMore(createPostPaginationObj(page + 1));
+
+    setPage(page + 1);
+  };
 
   return (
     <Container containerStyle={styles.container}>
@@ -22,6 +30,8 @@ const Posts = () => {
           contentContainerStyle={styles.flatListContainer}
           ListHeaderComponent={<Text style={styles.title}>Posts</Text>}
           renderItem={({ item }) => <PostItem post={item} />}
+          onEndReached={getMorePosts}
+          onEndReachedThreshold={0.9}
         />
       )}
     </Container>
