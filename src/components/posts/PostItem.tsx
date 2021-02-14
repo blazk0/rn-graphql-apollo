@@ -7,6 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { paramTypes } from '@navigation/paramTypes';
 import { Post, useDeletePostMutation } from '@generated/graphql';
 import { moderateScale, verticalScale } from '@utils/scaling';
+import { handleDeletePost } from '@utils/apollo/posts/mutation';
 
 type Props = {
   post: Post | null;
@@ -14,7 +15,11 @@ type Props = {
 
 const PostItem = ({ post }: Props) => {
   const navigation = useNavigation<StackNavigationProp<paramTypes>>();
-  const [mutate] = useDeletePostMutation();
+  const [mutate] = useDeletePostMutation({
+    update(cache) {
+      handleDeletePost(cache, post?.id as string);
+    },
+  });
 
   const deletePost = () => {
     mutate({
