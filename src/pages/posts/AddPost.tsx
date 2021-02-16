@@ -5,7 +5,7 @@ import { useAddPostMutation } from '@generated/graphql';
 import { postData } from '@utils/formTypes/posts';
 import PostForm from '@components/posts/PostForm';
 import { paramTypes } from '@navigation/paramTypes';
-import { handleAddPost } from '@utils/apollo/posts/mutation';
+import { handleAddPost } from '@cache/posts/mutation';
 
 type Props = {
   navigation: StackNavigationProp<paramTypes>;

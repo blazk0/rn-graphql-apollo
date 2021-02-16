@@ -1,3 +1,4 @@
 import Input from './Input';
+import FormWrap from './FormWrap';
 
-export { Input };
+export { Input, FormWrap };

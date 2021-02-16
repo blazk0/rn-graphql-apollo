@@ -1,11 +1,11 @@
 import React from 'react';
-import { Control, Controller, FieldError } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
+import { Control, Controller, FieldError } from 'react-hook-form';
 
 import { scale, verticalScale } from '@utils/scaling';
 
 type Props = TextInputProps & {
-  control: Control;
+  control?: Control;
   name: string;
   error?: FieldError;
   defaultVal?: string | null;

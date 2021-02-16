@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import AppContainer from '@navigation/index';
-import { memoryCache } from '@utils/apollo';
+import AppContainer from '@navigation/AppContainer';
+import { memoryCache } from '@cache/helpers';
 
 import './ReactotronConfig';
 

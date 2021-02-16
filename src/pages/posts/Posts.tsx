@@ -5,16 +5,16 @@ import { useGetPostsQuery } from '@generated/graphql';
 import { Container, Loading } from '@components/common';
 import PostItem from '@components/posts/PostItem';
 import { moderateScale, verticalScale } from '@utils/scaling';
-import { createPostPaginationObj } from '@utils/apollo';
+import { createPaginationObj } from '@cache/helpers';
 
 const Posts = () => {
   const [page, setPage] = useState(1);
   const { loading, data, fetchMore } = useGetPostsQuery(
-    createPostPaginationObj(page),
+    createPaginationObj(page),
   );
 
   const getMorePosts = () => {
-    fetchMore(createPostPaginationObj(page + 1));
+    fetchMore(createPaginationObj(page + 1));
 
     setPage(page + 1);
   };

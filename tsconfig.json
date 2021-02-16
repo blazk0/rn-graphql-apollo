@@ -21,7 +21,8 @@
       "@generated/*": ["./generated/*"],
       "@navigation/*": ["./navigation/*"],
       "@utils/*": ["./utils/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@cache/*": ["./cache/*"]
     }
   }
 }

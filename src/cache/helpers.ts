@@ -12,7 +12,7 @@ export const memoryCache: InMemoryCacheConfig = {
   },
 };
 
-export const createPostPaginationObj: (
+export const createPaginationObj: (
   page: number,
   limit?: number,
 ) => QueryHookOptions<GetPostsQuery, GetPostsQueryVariables> = (

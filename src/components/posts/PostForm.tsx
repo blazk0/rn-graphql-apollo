@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Text, StyleSheet } from 'react-native';
 
 import { Container, Button } from '@components/common';
-import { Input } from '@components/Form';
+import { FormWrap, Input } from '@components/Form';
 import { Post } from '@generated/graphql';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postData } from '@utils/formTypes/posts';
@@ -25,29 +25,29 @@ const PostForm = ({ post, title, onSubmit }: Props) => {
     <Container>
       <Text style={styles.title}>{title}</Text>
 
-      <Input
-        name="title"
-        placeholder="Title"
-        control={control}
-        error={errors.title}
-        defaultVal={post?.title}
-        multiline
-      />
+      <FormWrap control={control}>
+        <Input
+          name="title"
+          placeholder="Title"
+          error={errors.title}
+          defaultVal={post?.title}
+          multiline
+        />
 
-      <Input
-        name="body"
-        placeholder="Body"
-        control={control}
-        error={errors.body}
-        defaultVal={post?.body}
-        multiline
-      />
+        <Input
+          name="body"
+          placeholder="Body"
+          error={errors.body}
+          defaultVal={post?.body}
+          multiline
+        />
 
-      <Button
-        text={title}
-        onPress={handleSubmit(onSubmit)}
-        containerStyle={styles.btn}
-      />
+        <Button
+          text={title}
+          onPress={handleSubmit(onSubmit)}
+          containerStyle={styles.btn}
+        />
+      </FormWrap>
     </Container>
   );
 };

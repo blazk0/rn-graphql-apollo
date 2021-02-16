@@ -7,7 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { paramTypes } from '@navigation/paramTypes';
 import { Post, useDeletePostMutation } from '@generated/graphql';
 import { moderateScale, verticalScale } from '@utils/scaling';
-import { handleDeletePost } from '@utils/apollo/posts/mutation';
+import { handleDeletePost } from '@cache/posts/mutation';
 
 type Props = {
   post: Post | null;
