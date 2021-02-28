@@ -495,6 +495,11 @@ export type PostSnippetFragment = { __typename?: 'Post' } & Pick<
   'id' | 'title' | 'body'
 >;
 
+export type UserSnippetFragment = { __typename?: 'User' } & Pick<
+  User,
+  'id' | 'name' | 'username' | 'email' | 'phone'
+>;
+
 export type AddPostMutationVariables = Exact<{
   input: CreatePostInput;
 }>;
@@ -521,6 +526,14 @@ export type UpdatePostMutation = { __typename?: 'Mutation' } & {
   updatePost?: Maybe<{ __typename?: 'Post' } & PostSnippetFragment>;
 };
 
+export type AddUserMutationVariables = Exact<{
+  input: CreateUserInput;
+}>;
+
+export type AddUserMutation = { __typename?: 'Mutation' } & {
+  createUser?: Maybe<{ __typename?: 'User' } & UserSnippetFragment>;
+};
+
 export type GetPostQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -541,11 +554,32 @@ export type GetPostsQuery = { __typename?: 'Query' } & {
   >;
 };
 
+export type GetUsersQueryVariables = Exact<{
+  options?: Maybe<PageQueryOptions>;
+}>;
+
+export type GetUsersQuery = { __typename?: 'Query' } & {
+  users?: Maybe<
+    { __typename?: 'UsersPage' } & {
+      data?: Maybe<Array<Maybe<{ __typename?: 'User' } & UserSnippetFragment>>>;
+    }
+  >;
+};
+
 export const PostSnippetFragmentDoc = gql`
   fragment PostSnippet on Post {
     id
     title
     body
+  }
+`;
+export const UserSnippetFragmentDoc = gql`
+  fragment UserSnippet on User {
+    id
+    name
+    username
+    email
+    phone
   }
 `;
 export const AddPostDocument = gql`
@@ -691,6 +725,53 @@ export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<
   UpdatePostMutation,
   UpdatePostMutationVariables
 >;
+export const AddUserDocument = gql`
+  mutation addUser($input: CreateUserInput!) {
+    createUser(input: $input) {
+      ...UserSnippet
+    }
+  }
+  ${UserSnippetFragmentDoc}
+`;
+export type AddUserMutationFn = Apollo.MutationFunction<
+  AddUserMutation,
+  AddUserMutationVariables
+>;
+
+/**
+ * __useAddUserMutation__
+ *
+ * To run a mutation, you first call `useAddUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addUserMutation, { data, loading, error }] = useAddUserMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useAddUserMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddUserMutation,
+    AddUserMutationVariables
+  >,
+) {
+  return Apollo.useMutation<AddUserMutation, AddUserMutationVariables>(
+    AddUserDocument,
+    baseOptions,
+  );
+}
+export type AddUserMutationHookResult = ReturnType<typeof useAddUserMutation>;
+export type AddUserMutationResult = Apollo.MutationResult<AddUserMutation>;
+export type AddUserMutationOptions = Apollo.BaseMutationOptions<
+  AddUserMutation,
+  AddUserMutationVariables
+>;
 export const GetPostDocument = gql`
   query getPost($id: ID!) {
     post(id: $id) {
@@ -794,4 +875,58 @@ export type GetPostsLazyQueryHookResult = ReturnType<
 export type GetPostsQueryResult = Apollo.QueryResult<
   GetPostsQuery,
   GetPostsQueryVariables
+>;
+export const GetUsersDocument = gql`
+  query getUsers($options: PageQueryOptions) {
+    users(options: $options) {
+      data {
+        ...UserSnippet
+      }
+    }
+  }
+  ${UserSnippetFragmentDoc}
+`;
+
+/**
+ * __useGetUsersQuery__
+ *
+ * To run a query within a React component, call `useGetUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUsersQuery({
+ *   variables: {
+ *      options: // value for 'options'
+ *   },
+ * });
+ */
+export function useGetUsersQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>,
+) {
+  return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(
+    GetUsersDocument,
+    baseOptions,
+  );
+}
+export function useGetUsersLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetUsersQuery,
+    GetUsersQueryVariables
+  >,
+) {
+  return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(
+    GetUsersDocument,
+    baseOptions,
+  );
+}
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
+export type GetUsersLazyQueryHookResult = ReturnType<
+  typeof useGetUsersLazyQuery
+>;
+export type GetUsersQueryResult = Apollo.QueryResult<
+  GetUsersQuery,
+  GetUsersQueryVariables
 >;

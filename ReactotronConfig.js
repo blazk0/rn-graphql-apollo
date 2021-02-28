@@ -1,5 +1,3 @@
-import Reactotron from 'reactotron-react-native';
+import reactotron from 'reactotron-react-native';
 
-const reactotron = Reactotron.configure().useReactNative().connect();
-
-export default reactotron;
+export default reactotron.configure().useReactNative().connect();

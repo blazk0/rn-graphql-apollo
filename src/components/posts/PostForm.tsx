@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Text, StyleSheet } from 'react-native';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Container, Button } from '@components/common';
 import { FormWrap, Input } from '@components/Form';
 import { Post } from '@generated/graphql';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { postData } from '@utils/formTypes/posts';
 import { moderateScale, verticalScale, scale } from '@utils/scaling';
 import { postFormSchema } from '@utils/schemas/posts';

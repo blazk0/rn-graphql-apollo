@@ -1,0 +1,7 @@
+query getUsers($options: PageQueryOptions) {
+  users(options: $options) {
+    data {
+      ...UserSnippet
+    }
+  }
+}

@@ -1,14 +1,14 @@
 import { FieldPolicy } from '@apollo/client';
 
-const postsQuery: { posts: FieldPolicy } = {
-  posts: {
+const usersQuery: { users: FieldPolicy } = {
+  users: {
     keyArgs: false,
     merge(existing = [], incoming, options) {
       let data;
 
       if (options?.args?.options?.paginate?.page > 1) {
         data = {
-          __typename: 'PostsPage',
+          __typename: 'UsersPage',
           data: [...existing.data, ...incoming.data],
         };
       } else {
@@ -20,4 +20,4 @@ const postsQuery: { posts: FieldPolicy } = {
   },
 };
 
-export default postsQuery;
+export default usersQuery;

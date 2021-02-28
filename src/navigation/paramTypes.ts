@@ -1,3 +1,5 @@
+import { Maybe } from '@generated/graphql';
+
 export type paramTypes = {
-  EditPost: { postId: string | null | undefined };
+  EditPost: { postId: Maybe<string> };
 };

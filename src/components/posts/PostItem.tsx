@@ -5,12 +5,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { paramTypes } from '@navigation/paramTypes';
-import { Post, useDeletePostMutation } from '@generated/graphql';
+import { Maybe, Post, useDeletePostMutation } from '@generated/graphql';
 import { moderateScale, verticalScale } from '@utils/scaling';
 import { handleDeletePost } from '@cache/posts/mutation';
 
 type Props = {
-  post: Post | null;
+  post: Maybe<Post>;
 };
 
 const PostItem = ({ post }: Props) => {

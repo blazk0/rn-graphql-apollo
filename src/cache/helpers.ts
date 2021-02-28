@@ -1,12 +1,13 @@
 import { InMemoryCacheConfig, QueryHookOptions } from '@apollo/client';
-import { GetPostsQuery, GetPostsQueryVariables } from '@generated/graphql';
 import postsQuery from './posts/query';
+import usersQuery from './users/query';
 
 export const memoryCache: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
       fields: {
         ...postsQuery,
+        ...usersQuery,
       },
     },
   },
@@ -15,10 +16,7 @@ export const memoryCache: InMemoryCacheConfig = {
 export const createPaginationObj: (
   page: number,
   limit?: number,
-) => QueryHookOptions<GetPostsQuery, GetPostsQueryVariables> = (
-  page,
-  limit = 20,
-) => ({
+) => QueryHookOptions = (page, limit = 20) => ({
   variables: {
     options: {
       paginate: {

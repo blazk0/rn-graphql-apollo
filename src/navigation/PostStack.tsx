@@ -8,6 +8,7 @@ import Post from '@pages/posts/EditPost';
 import AddPost from '@pages/posts/AddPost';
 import Button from '@components/common/Button';
 import { scale } from '@utils/scaling';
+import { toggleDrawer } from '@utils/navigation';
 
 const PostStack = () => {
   const Stack = createStackNavigator();
@@ -22,7 +23,9 @@ const PostStack = () => {
           headerRight: () => (
             <Button text="Add" onPress={() => navigation.navigate('AddPost')} />
           ),
-          headerRightContainerStyle: styles.rightBtn,
+          headerLeft: () => <Button text="Drawer" onPress={toggleDrawer} />,
+          headerRightContainerStyle: styles.btn,
+          headerLeftContainerStyle: styles.btn,
         }}
       />
       <Stack.Screen
@@ -44,8 +47,8 @@ const PostStack = () => {
 };
 
 const styles = StyleSheet.create({
-  rightBtn: {
-    marginRight: scale(20),
+  btn: {
+    marginHorizontal: scale(20),
   },
 });
 
